@@ -1,0 +1,32 @@
+{
+  "name": "@background404/node-red-contrib-queue",
+  "version": "0.0.1",
+  "description": "Node-RED node for handling queues",
+  "main": "node/queue.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "version": ">=1.3.7",
+    "nodes": {
+      "queue": "node/queue.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/404background/node-red-contrib-queue.git"
+  },
+  "keywords": [
+    "node-red",
+    "queue"
+  ],
+  "author": "background404",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/404background/node-red-contrib-queue/issues"
+  },
+  "homepage": "https://github.com/404background/node-red-contrib-queue#readme"
+}

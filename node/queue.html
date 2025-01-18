@@ -1,0 +1,62 @@
+<script type="text/javascript">
+    RED.nodes.registerType('queue', {
+        category: 'function',
+        color: '#F3B567',
+        defaults: {
+            name: { value: "" },
+            operation: { value: "topic", required: true },
+            operationType: { value: "msg", required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "db.svg",
+        label: function () {
+            return this.name || "queue";
+        },
+        oneditprepare: function () {
+            $("#node-input-operation").typedInput({
+                type: "msg",
+                types: ["msg", "flow", "global"],
+                typeField: "#node-input-operationType"
+            });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="queue">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-operation"><i class="fa fa-cogs"></i> Operation</label>
+        <input type="text" id="node-input-operation">
+        <input type="hidden" id="node-input-operationType">
+    </div>
+
+    <div class="form-tips">
+        <b>Tip:Operation</b>
+        <ul>
+            <li><code>enqueue</code>: Push msg.payload to the queue.</li>
+            <li><code>dequeue</code>: Shift from the queue and sends it</li>
+            <li><code>get</code>: Get the current contents of the queue as an array.</li>
+            <li><code>clear</code>: Clears the queue, removing all items.</li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="queue">
+    <p>This node helps you manage a FIFO queue. It supports operations like enqueue, dequeue, get, and clear the queue.</p>
+
+    <h2><strong>Operation</strong></h2>
+    <p>The Operation specifies the action that will be performed on the queue.</p>
+    <p>These operations can be defined based on a variable, such as <code>msg.topic</code>.
+    <p>Here’s how you can define the operations:</p>
+    
+    <ul>
+        <li><code>enqueue</code>: Push msg.payload to the queue.</li>
+        <li><code>dequeue</code>: Shift from the queue and sends it</li>
+        <li><code>get</code>: Get the current contents of the queue as an array.</li>
+        <li><code>clear</code>: Clears the queue, removing all items.</li>
+    </ul>
+</script>
