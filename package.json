@@ -15,7 +15,7 @@
   "node-red": {
     "version": ">=1.3.7",
     "nodes": {
-      "queue": "node/queue.js"
+      "@background404_queue": "node/queue.js"
     }
   },
   "repository": {

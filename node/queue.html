@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('queue', {
+    RED.nodes.registerType('@background404_queue', {
         category: 'function',
         color: '#F3B567',
         defaults: {
@@ -13,6 +13,9 @@
         label: function () {
             return this.name || "queue";
         },
+        paletteLabel: function () {
+            return "queue";
+        },
         oneditprepare: function () {
             $("#node-input-operation").typedInput({
                 type: "msg",
@@ -23,7 +26,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="queue">
+<script type="text/html" data-template-name="@background404_queue">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -45,7 +48,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="queue">
+<script type="text/html" data-help-name="@background404_queue">
     <p>This node helps you manage a FIFO queue. It supports operations like enqueue, dequeue, get, and clear the queue.</p>
 
     <h2><strong>Operation</strong></h2>
@@ -59,4 +62,5 @@
         <li><code>get</code>: Get the current contents of the queue as an array.</li>
         <li><code>clear</code>: Clears the queue, removing all items.</li>
     </ul>
+    <code>msg._queue</code> always outputs an array of queues.
 </script>
