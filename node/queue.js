@@ -27,22 +27,28 @@ module.exports = function (RED) {
 
             if (operation === 'enqueue') {
                 queue.push(msg.payload)
+                send({ _queue: queue })
                 this.context().set('queue', queue)
                 this.status({ fill: 'green', shape: 'dot', text: `Enqueued: ${queue.length}` })
             } else if (operation === 'dequeue') {
                 this.context().set('queue', queue)
-                send({ payload: queue.shift() })
+                msg.payload = queue.shift()
+                msg._queue = queue
+                send(msg)
                 if (queue.length > 0) {
                     this.status({ fill: 'blue', shape: 'dot', text: `Dequeued: ${queue.length}` })
                 } else {
                     this.status({ fill: 'grey', shape: 'dot', text: 'Queue is empty' })
                 }
             } else if (operation === 'get') {
-                send({ payload: [...queue] })
+                msg.payload = [...queue]
+                msg._queue = queue
+                send(msg)
                 this.status({ fill: 'yellow', shape: 'dot', text: `Get: ${queue.length}` })
             } else if (operation === 'clear') {
                 queue.length = 0
                 this.context().set('queue', queue)
+                send({ _queue: queue })
                 this.status({ fill: 'grey', shape: 'dot', text: 'Queue is empty' })
             } else {
                 this.error('Invalid operation. Use "enqueue", "dequeue", "preview", or "clear".', msg)
@@ -52,7 +58,7 @@ module.exports = function (RED) {
         })
     }
 
-    RED.nodes.registerType("queue", QueueNode, {
+    RED.nodes.registerType("@background404_queue", QueueNode, {
         defaults: {
             name: { value: "" },
             operation: { value: "topic", required: true },
