@@ -1,6 +1,6 @@
 {
   "name": "@background404/node-red-contrib-queue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node-RED node for handling queues",
   "main": "node/queue.js",
   "directories": {
