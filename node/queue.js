@@ -51,7 +51,7 @@ module.exports = function (RED) {
                 send({ _queue: queue })
                 this.status({ fill: 'grey', shape: 'dot', text: 'Queue is empty' })
             } else {
-                this.error('Invalid operation. Use "enqueue", "dequeue", "preview", or "clear".', msg)
+                this.error('Invalid operation. Use "enqueue", "dequeue", "get", or "clear".', msg)
             }
 
             done()
